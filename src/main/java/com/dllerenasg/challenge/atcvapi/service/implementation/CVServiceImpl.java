@@ -26,12 +26,12 @@ public class CVServiceImpl implements CVService {
     }
 
     @Override
-    public CV getCvById(String id) {
-    	Optional<CV> foundCV = cvRepository.findById(id);
+    public CV getCvById(String resourceId) {
+    	Optional<CV> foundCV = cvRepository.findById(resourceId);
     	if(foundCV.isPresent()) {
     		return foundCV.get();
     	}
-    	throw new CVNotFoundException(String.format("Curriculum Vitae with id %s couldn't be found.", id));
+    	throw new CVNotFoundException(String.format("Curriculum Vitae with id %s couldn't be found.", resourceId));
     }
 
     @Override
@@ -42,13 +42,13 @@ public class CVServiceImpl implements CVService {
     }
     
     @Override
-    public void updateCV(CV cv, String id) throws CVInvalidFormatException, CVMissingRequiredFieldException, CVNotFoundException {
-    	if(cvRepository.existsById(id)) {
+    public void updateCV(CV cv, String resourceId) throws CVInvalidFormatException, CVMissingRequiredFieldException, CVNotFoundException {
+    	if(cvRepository.existsById(resourceId)) {
     		cvValidator.validate(cv);
-    		cv.setId(id);
+    		cv.setId(resourceId);
     		cvRepository.save(cv);
     		return;
     	}
-    	throw new CVNotFoundException(String.format("Curriculum Vitae with id %s couldn't be found.", id));
+    	throw new CVNotFoundException(String.format("Curriculum Vitae with id %s couldn't be found.", resourceId));
     }
 }

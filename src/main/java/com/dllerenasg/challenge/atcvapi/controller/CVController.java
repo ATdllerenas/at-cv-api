@@ -25,9 +25,9 @@ public class CVController {
 	
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public CV getCVById(@PathVariable String id) {
+	public CV getCVById(@PathVariable String resourceId) {
 		try {
-			return cvService.getCvById(id);
+			return cvService.getCvById(resourceId);
 			}
 		catch(CVNotFoundException notFound) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, notFound.getMessage());
@@ -47,9 +47,9 @@ public class CVController {
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void updateCV(@RequestBody CV cv, @PathVariable String id) {
+	public void updateCV(@RequestBody CV cv, @PathVariable String resourceId) {
 		try {
-			cvService.updateCV(cv, id);
+			cvService.updateCV(cv, resourceId);
 		}
 		catch(CVNotFoundException notFound) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, notFound.getMessage());

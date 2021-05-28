@@ -7,5 +7,5 @@ import lombok.Getter;
 @Getter
 public class CVPResponse {
 	
-	private final String id;
+	private final String resourceId;
 }

@@ -9,9 +9,9 @@ public interface CVService {
 	
 	public List<CV> getAllCV();
     
-	public CV getCvById(String id) throws CVNotFoundException;
+	public CV getCvById(String resourceId) throws CVNotFoundException;
    
 	public CVPResponse createCV(CV cv) throws CVInvalidFormatException, CVMissingRequiredFieldException;
     
-	public void updateCV(CV cv, String id) throws CVInvalidFormatException, CVMissingRequiredFieldException, CVNotFoundException;
+	public void updateCV(CV cv, String resourceId) throws CVInvalidFormatException, CVMissingRequiredFieldException, CVNotFoundException;
 }
